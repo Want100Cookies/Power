@@ -1,5 +1,16 @@
 const {mix} = require('laravel-mix');
+const webpack = require('webpack');
 
+
+mix.webpackConfig({
+    plugins: [
+        // Dirty hack for our AdminLTE image, can we do better somehow?
+        new webpack.NormalModuleReplacementPlugin(
+            /boxed-bg.jpg$/,
+            __dirname + "/node_modules/admin-lte/dist/img/boxed-bg.jpg"
+        )
+    ]
+});
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,8 +22,7 @@ const {mix} = require('laravel-mix');
  |
  */
 
-mix.js([
-    'resources/assets/js/app.js',
-    'node_modules/admin-lte/dist/js/app.js',
-], 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js')
+    .sass('resources/assets/sass/scss.scss', 'public/css')
+    .less('resources/assets/less/less.less', 'public/css')
+    .version();

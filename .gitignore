@@ -12,3 +12,6 @@ public/mix-manifest\.json
 npm-debug\.log
 
 public/js/
+public/css/
+public/images/
+public/fonts/
