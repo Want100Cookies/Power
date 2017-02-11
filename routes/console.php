@@ -13,6 +13,10 @@ use Illuminate\Foundation\Inspiring;
 |
 */
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->describe('Display an inspiring quote');
+Artisan::command('pv:request', function () {
+    $job = (new \App\Jobs\ProcessPVTelegram())
+        ->onQueue('process-telegrams');
+    dispatch($job);
+
+    $this->info('ProcessPVTelegram job send to queue "process-telegrams"');
+})->describe('Send job to queue that request new PV information from the inverter');

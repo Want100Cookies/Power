@@ -14,7 +14,7 @@ class ApiController extends Controller
         ]);
 
         $job = (new ProcessDsmrTelegram($request->get('telegram')))
-            ->onQueue('dsmr-telegrams');
+            ->onQueue('process-telegrams');
 
         dispatch($job);
     }
