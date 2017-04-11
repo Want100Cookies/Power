@@ -8,6 +8,15 @@ mix.webpackConfig({
         new webpack.NormalModuleReplacementPlugin(
             /boxed-bg.jpg$/,
             __dirname + "/node_modules/admin-lte/dist/img/boxed-bg.jpg"
+        ),
+        // Thanks iCheck...
+        new webpack.NormalModuleReplacementPlugin(
+            /blue.png$/,
+            __dirname + "/node_modules/icheck/skins/square/blue.png"
+        ),
+        new webpack.NormalModuleReplacementPlugin(
+            /blue@2x.png$/,
+            __dirname + "/node_modules/icheck/skins/square/blue@2x.png"
         )
     ]
 });

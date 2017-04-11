@@ -8,6 +8,7 @@
 require('./bootstrap');
 require('jquery-slimscroll');
 require('admin-lte');
+require('icheck');
 
 // https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#advice
 /**
