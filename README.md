@@ -24,5 +24,7 @@ If you have access to another smart meter or inverter please send me the telegra
 - [ ] Make current usage graphs for dashboard page (including prices)
 - [ ] Make hourly/daily/yearly statistics mechanism
 - [ ] Make hourly/daily/yearly graphs for statistics page
+- [ ] Compare days/months/years for compare page
+- [ ] View current queue length and health status on status page
 - [ ] Write documentation
 - [ ] Think of more functionality
