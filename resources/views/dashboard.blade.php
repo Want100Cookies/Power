@@ -2,4 +2,6 @@
 
 @section('content')
     <p>This is the dashboard</p>
+
+
 @endsection

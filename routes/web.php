@@ -12,4 +12,6 @@
 */
 
 Auth::routes();
-Route::get('/', 'HomeController@index');
+Route::get('/', 'PageController@index')->name('dashboard');
+
+Route::get('/configuration', 'PageController@configuration')->name('configuration');

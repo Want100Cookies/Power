@@ -11,3 +11,26 @@
   }
 }
 
+.page-header {
+  /*border-bottom: 1px solid #ddd;        */
+  margin: 20px 0 10px 0 !important;
+  position: relative;
+  z-index: 1;
+  font-size: 30px;
+}
+
+.page-header span,
+.page-header a {
+  z-index: 5;
+  display: block;
+  background-color: #ecf0f5;
+  color: #000;
+}
+
+.page-header span::before,
+.page-header a::before {
+  content: '#';
+  font-size: 25px;
+  margin-right: 10px;
+  color: #3c8dbc;
+}

@@ -7,6 +7,12 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{ mix('css/scss.css') }}">
     <link rel="stylesheet" href="{{ mix('css/less.css') }}">
+
+    <script>
+        window.Laravel = <?php echo json_encode( [
+			'csrfToken' => csrf_token(),
+		] ); ?>
+    </script>
 </head>
 <body class="skin-blue sidebar-mini">
 <div class="wrapper">
@@ -106,7 +112,9 @@
                                             <!-- The progress bar -->
                                             <div class="progress xs">
                                                 <!-- Change the css width attribute to simulate progress -->
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
                                                     <span class="sr-only">20% Complete</span>
                                                 </div>
                                             </div>
@@ -134,7 +142,8 @@
                             <li class="user-header">
                                 <p>
                                     {{ Auth::user()->name }}
-                                    <small>Member since {{ Auth::user()->created_at->diffForHumans(\Carbon\Carbon::now(), true) }}</small>
+                                    <small>Member
+                                        since {{ Auth::user()->created_at->diffForHumans(\Carbon\Carbon::now(), true) }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
@@ -175,9 +184,10 @@
                 <li class="active">Dashboard</li>
             </ol>
         </section>
-        <section class="content">
+        <div class="content body">
             @yield('content')
-        </section>
+        </div>
+
     </div>
     <footer class="main-footer">
         <div class="pull-right hidden-xs">

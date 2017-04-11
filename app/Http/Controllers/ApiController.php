@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    public function DsmrTelegramRaw(Request $request)
+	public function __construct() {
+		$this->middleware('auth:api');
+	}
+
+	public function DsmrTelegramRaw(Request $request)
     {
         $this->validate($request, [
             'telegram' => 'required|string'

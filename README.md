@@ -17,8 +17,8 @@ If you have access to another smart meter or inverter please send me the telegra
 - [x] Collect PV telegrams
 - [x] Parse PV telegrams
 - [x] Make user login
-- [ ] Let user generate API token(s) for API endpoints
-- [ ] Only allow API access with API token(s)
+- [x] Let user generate API token(s) for API endpoints
+- [x] Only allow API access with API token(s)
 - [ ] Let user change settings for Solar inverter
 - [ ] Let user enter cost information
 - [ ] Make current usage graphs for dashboard page (including prices)
