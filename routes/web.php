@@ -11,10 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layout.main');
-});
-
-Route::get('/login', function () {
-	return view('layout.login');
-});
+Auth::routes();
+Route::get('/', 'HomeController@index');

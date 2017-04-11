@@ -16,7 +16,7 @@ If you have access to another smart meter or inverter please send me the telegra
 - [x] Parse DSMR telegrams
 - [x] Collect PV telegrams
 - [x] Parse PV telegrams
-- [ ] Make user login
+- [x] Make user login
 - [ ] Let user generate API token(s) for API endpoints
 - [ ] Only allow API access with API token(s)
 - [ ] Let user change settings for Solar inverter
