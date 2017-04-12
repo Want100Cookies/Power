@@ -20,8 +20,14 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
-if ($("#passport").length) {
+Vue.component(
+    'cost-price',
+    require('./components/CostPrice.vue')
+);
+
+if ($("#configuration").length) {
     new Vue({
-        el: '#passport'
+        el: '#configuration'
     });
 }
+

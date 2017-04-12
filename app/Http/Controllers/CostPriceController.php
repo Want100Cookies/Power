@@ -20,7 +20,7 @@ class CostPriceController extends Controller
      */
     public function index()
     {
-        return CostPrice::all();
+        return CostPrice::orderBy('created_at', 'DESC')->get();
     }
 
     /**
