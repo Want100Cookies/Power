@@ -1,5 +1,8 @@
 <style scoped>
-
+    .table-responsive {
+        height: 200px;
+        overflow-y: scroll;
+    }
 </style>
 
 <template>
@@ -12,7 +15,14 @@
                     <i class="fa fa-fire"></i>
                 </span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Gas price</span>
+                        <span class="info-box-text">
+                            Gas price
+                            <button type="button"
+                                    class="btn btn-default btn-xs pull-right"
+                                    @click="showCreateModal('gas')">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </span>
                         <span class="info-box-number">&euro; {{ lastGas }}</span>
                     </div>
                 </div>
@@ -23,7 +33,14 @@
                     <i class="fa fa-bolt"></i>
                 </span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Electricity price</span>
+                        <span class="info-box-text">
+                            Electricity price
+                            <button type="button"
+                                    class="btn btn-default btn-xs pull-right"
+                                    @click="showCreateModal('electricity')">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </span>
                         <span class="info-box-number">&euro; {{ lastElectricity }}</span>
                     </div>
                 </div>
@@ -91,6 +108,16 @@
                         <h4 class="modal-title">Add new price</h4>
                     </div>
                     <div class="modal-body">
+                        <div class="alert alert-danger" v-if="form.errors.length > 0">
+                            <p><strong>Whoops!</strong> Something went wrong!</p>
+                            <br>
+                            <ul>
+                                <li v-for="error in form.errors">
+                                    {{ error }}
+                                </li>
+                            </ul>
+                        </div>
+
                         <form class="form-horizontal" role="form" @submit.prevent="store">
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Price</label>
@@ -113,7 +140,8 @@
                             Close
                         </button>
                         <button type="button"
-                                class="btn btn-primary">
+                                class="btn btn-primary"
+                                @click="store">
                             Add price
                         </button>
                     </div>
@@ -133,7 +161,8 @@
 
                 form: {
                     type: '',
-                    price: ''
+                    price: '',
+                    errors: []
                 }
             };
         },
@@ -182,6 +211,43 @@
 
                 return list;
             },
+
+            store() {
+                this.form.errors = [];
+
+                axios.post('/api/v1/cost-price', this.form)
+                    .then(response => {
+                       this.form.price = 0;
+                       this.form.type = '';
+                       this.form.errors = [];
+
+                       this.prices.unshift(response.data);
+
+                       $('#priceModal').modal('hide');
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === 'object') {
+                            this.form.errors = _.flatten(_.toArray(error.response.data));
+                        } else {
+                            this.form.errors = ['Something went wrong. Please try again.'];
+                        }
+                    });
+            },
+
+            showCreateModal(type) {
+                this.form.type = type;
+
+                switch (type) {
+                    case 'gas':
+                        this.form.price = this.lastGas;
+                        break;
+                    case 'electricity':
+                        this.form.price = this.lastElectricity;
+                        break;
+                }
+
+                $('#priceModal').modal('show');
+            }
         }
     }
 </script>
