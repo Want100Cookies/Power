@@ -15,4 +15,8 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('dsmr/raw', 'ApiController@DsmrTelegramRaw');
+
+    Route::get('cost-price', 'CostPriceController@index');
+    Route::get('cost-price/last/{type}', 'CostPriceController@last');
+    Route::post('cost-price', 'CostPriceController@store');
 });

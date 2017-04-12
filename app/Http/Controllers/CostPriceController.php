@@ -2,84 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\CostPrice;
+use App\Models\CostPrice;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CostPriceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth:api');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function create()
+    public function index()
     {
-        //
+        return CostPrice::all();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return CostPrice
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'type' => [
+                'required',
+                Rule::in(['gas', 'electricity'])
+            ],
+            'price' => [
+                'required',
+                'numeric'
+            ]
+        ]);
+
+        $costPrice = CostPrice::create($request->only(['type', 'price']));
+
+        return $costPrice;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\CostPrice  $costPrice
+     * @param $type
      * @return \Illuminate\Http\Response
      */
-    public function show(CostPrice $costPrice)
+    public function last($type)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CostPrice  $costPrice
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CostPrice $costPrice)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CostPrice  $costPrice
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CostPrice $costPrice)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\CostPrice  $costPrice
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CostPrice $costPrice)
-    {
-        //
+        return CostPrice::where('type', $type)
+            ->orderBy('created_at', 'DESC')
+            ->first();
     }
 }

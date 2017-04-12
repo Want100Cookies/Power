@@ -16,6 +16,7 @@ class CreateCostPricesTable extends Migration
         Schema::create('cost_prices', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('type', ['gas', 'electricity']);
+            $table->double('price', 10, 5);
 
             $table->timestamps();
         });
