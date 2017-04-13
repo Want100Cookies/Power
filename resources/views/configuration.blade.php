@@ -15,37 +15,7 @@
                 <a href="#pv-settings">PV Settings</a>
             </h2>
 
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Inverter address</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control"
-                               value="{{ config('inverter.ip') }}:{{ config('inverter.port') }}" disabled>
-                    </div>
-                </div>
-            </div>
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Inverter Serial:</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" value="{{ config('inverter.serial') }}" disabled>
-                    </div>
-                </div>
-            </div>
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Inverter ID:</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" value="{{ config('inverter.id') }}" disabled>
-                    </div>
-                </div>
-            </div>
+            <inverter></inverter>
         </section>
 
         <section id="api-settings">

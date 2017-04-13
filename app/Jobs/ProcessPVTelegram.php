@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\PVTelegram;
+use App\Models\Setting;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -84,7 +85,9 @@ class ProcessPVTelegram implements ShouldQueue
      */
     protected function getInverterChecksum()
     {
-        $hex = dechex(config('inverter.serial'));
+        $serial = Setting::where(['key' => 'inverter_serial'])->firstOrFail()->value;
+
+        $hex = dechex($serial);
         $cs = 115;
         $tmpStr = '';
 
@@ -128,8 +131,11 @@ class ProcessPVTelegram implements ShouldQueue
      */
     public function receiveTelegram()
     {
+        $ip = Setting::where(['key' => 'inverter_ip'])->firstOrFail()->value;
+        $port = Setting::where(['key' => 'inverter_port'])->firstOrFail()->value;
+
         $sock = @stream_socket_client(
-            'tcp://' . config('inverter.ip') . ':' . config('inverter.port'),
+            'tcp://' . $ip . ':' . $port,
             $errorCode,
             $errorStr,
             10

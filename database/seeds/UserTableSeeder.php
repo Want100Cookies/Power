@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
         $user = new \App\Models\User([
             'name' => 'Administrator',
             'email' => 'admin@localhost',
-            'password' => 'admin',
+            'password' => \Hash::make('admin'),
         ]);
 
         $user->save();

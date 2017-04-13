@@ -1,7 +1,8 @@
 <style scoped>
     .table-responsive {
-        height: 200px;
-        overflow-y: scroll;
+        min-height: 50px;
+        max-height: 150px;
+        overflow-y: auto;
     }
 </style>
 
@@ -156,8 +157,8 @@
         data() {
             return {
                 prices: [],
-                lastGas: "<unknown>",
-                lastElectricity: "<unknown>",
+                lastGas: "...",
+                lastElectricity: "...",
 
                 form: {
                     type: '',

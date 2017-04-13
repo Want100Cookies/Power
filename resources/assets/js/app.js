@@ -22,7 +22,12 @@ Vue.component(
 
 Vue.component(
     'cost-price',
-    require('./components/CostPrice.vue')
+    require('./components/configuration/CostPrice.vue')
+);
+
+Vue.component(
+    'inverter',
+    require('./components/configuration/Inverter.vue')
 );
 
 if ($("#configuration").length) {

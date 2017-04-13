@@ -19,4 +19,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('cost-price', 'CostPriceController@index');
     Route::get('cost-price/last/{type}', 'CostPriceController@last');
     Route::post('cost-price', 'CostPriceController@store');
+
+    Route::resource('settings', 'SettingController', ['except' => [
+        'create', 'edit'
+    ]]);
 });
