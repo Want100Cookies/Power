@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +20,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('cost-price', 'CostPriceController@store');
 
     Route::resource('settings', 'SettingController', ['except' => [
-        'create', 'edit'
+        'create', 'edit',
     ]]);
 });

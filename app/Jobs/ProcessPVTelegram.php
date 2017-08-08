@@ -2,9 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Models\PVTelegram;
 use App\Models\Setting;
-use Carbon\Carbon;
+use App\Models\PVTelegram;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -79,7 +78,7 @@ class ProcessPVTelegram implements ShouldQueue
      *    b. the second part is the reversed hex notation of the s/n twice;
      *    c. then again a fixed string of two chars : 0x0100;
      *    d. a checksum of the double s/n with an offset;
-     *    e. and finally a fixed ending char : 0x16;
+     *    e. and finally a fixed ending char : 0x16;.
      *
      * @return string
      */
@@ -116,15 +115,15 @@ class ProcessPVTelegram implements ShouldQueue
         );
 
         // now glue all parts together
-        return "\x68\x02\x40\x30" .
-            hex2str($tmpStr . $tmpStr) .
-            "\x01\x00" .
-            $checksum .
+        return "\x68\x02\x40\x30".
+            hex2str($tmpStr.$tmpStr).
+            "\x01\x00".
+            $checksum.
             "\x16";
     }
 
     /**
-     * Receive telegram using tcp socket
+     * Receive telegram using tcp socket.
      *
      * @return string
      * @throws \Exception
@@ -135,7 +134,7 @@ class ProcessPVTelegram implements ShouldQueue
         $port = Setting::where(['key' => 'inverter_port'])->firstOrFail()->value;
 
         $sock = @stream_socket_client(
-            'tcp://' . $ip . ':' . $port,
+            'tcp://'.$ip.':'.$port,
             $errorCode,
             $errorStr,
             10

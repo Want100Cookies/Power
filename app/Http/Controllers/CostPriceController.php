@@ -34,12 +34,12 @@ class CostPriceController extends Controller
         $this->validate($request, [
             'type' => [
                 'required',
-                Rule::in(['gas', 'electricity'])
+                Rule::in(['gas', 'electricity']),
             ],
             'price' => [
                 'required',
-                'numeric'
-            ]
+                'numeric',
+            ],
         ]);
 
         $costPrice = CostPrice::create($request->only(['type', 'price']));
