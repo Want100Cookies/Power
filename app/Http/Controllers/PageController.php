@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+class PageController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-class PageController extends Controller {
-	/**
-	 * Create a new controller instance.
-	 */
-	public function __construct() {
-		$this->middleware( 'auth' );
-	}
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('dashboard');
+    }
 
-	/**
-	 * Show the application dashboard.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index() {
-		return view( 'dashboard' );
-	}
-
-	public function configuration() {
-		return view( 'configuration' );
-	}
+    public function configuration()
+    {
+        return view('configuration');
+    }
 }

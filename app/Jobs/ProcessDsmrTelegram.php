@@ -2,14 +2,14 @@
 
 namespace App\Jobs;
 
-use App\Models\DsmrTelegram;
 use Carbon\Carbon;
+use Spatie\Regex\Regex;
+use App\Models\DsmrTelegram;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Spatie\Regex\Regex;
 
 class ProcessDsmrTelegram implements ShouldQueue
 {
@@ -37,7 +37,6 @@ class ProcessDsmrTelegram implements ShouldQueue
     public function handle()
     {
         $parsed = new DsmrTelegram();
-
 
         $parsed->send_at = $this->parseTST('0-0:1\.0\.0', $this->telegram);
 
@@ -92,7 +91,7 @@ class ProcessDsmrTelegram implements ShouldQueue
     }
 
     /**
-     * Parse TST types from telegram
+     * Parse TST types from telegram.
      *
      * @param string $regex
      * @param string $telegram
@@ -101,12 +100,12 @@ class ProcessDsmrTelegram implements ShouldQueue
     protected function parseTST(string $regex, string $telegram)
     {
         $tst = Regex::match(
-            '/' . $regex . '\((\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})([SW])\)/mi',
+            '/'.$regex.'\((\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})([SW])\)/mi',
             $telegram
         );
 
         return Carbon::create(
-            substr(Carbon::now()->year, 0, 2) . $tst->group(1), // Because the group states '16' instead of '2016'
+            substr(Carbon::now()->year, 0, 2).$tst->group(1), // Because the group states '16' instead of '2016'
             $tst->group(2),
             $tst->group(3),
             $tst->group(4),

@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ProcessDsmrTelegram;
 use Illuminate\Http\Request;
+use App\Jobs\ProcessDsmrTelegram;
 
 class ApiController extends Controller
 {
-	public function __construct() {
-		$this->middleware('auth:api');
-	}
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
 
-	public function DsmrTelegramRaw(Request $request)
+    public function DsmrTelegramRaw(Request $request)
     {
         $this->validate($request, [
-            'telegram' => 'required|string'
+            'telegram' => 'required|string',
         ]);
 
         $job = (new ProcessDsmrTelegram($request->get('telegram')))

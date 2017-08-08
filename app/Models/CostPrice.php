@@ -8,6 +8,6 @@ class CostPrice extends Model
 {
     protected $fillable = [
         'type',
-        'price'
+        'price',
     ];
 }

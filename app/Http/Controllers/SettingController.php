@@ -35,9 +35,9 @@ class SettingController extends Controller
             'key' => [
                 'required',
                 'regex:/^[a-z_0-9]+$/',
-                Rule::unique('settings', 'key')
+                Rule::unique('settings', 'key'),
             ],
-            'value' => 'required'
+            'value' => 'required',
         ]);
 
         $setting = Setting::create($request->only(['key', 'value']));
@@ -66,7 +66,7 @@ class SettingController extends Controller
     public function update(Request $request, Setting $setting)
     {
         $this->validate($request, [
-            'value' => 'required'
+            'value' => 'required',
         ]);
 
         $setting->update($request->only(['value']));

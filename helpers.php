@@ -1,8 +1,8 @@
 <?php
 
-if (!function_exists('hex2string')) {
+if (! function_exists('hex2string')) {
     /**
-     * Convert readable hex-string to character string i.e. "41424344" => "ABCD"
+     * Convert readable hex-string to character string i.e. "41424344" => "ABCD".
      *
      * Source: https://github.com/micromys/Omnik/blob/master/inverter_class.php
      * @param $hex
@@ -15,16 +15,16 @@ if (!function_exists('hex2string')) {
         // process each pair of bytes
         for ($i = 0; $i < strlen($hex) - 1; $i += 2) {
             // pick 2 bytes, convert via hexdec to chr
-            $string .= chr(hexdec($hex[$i] . $hex[$i + 1]));
+            $string .= chr(hexdec($hex[$i].$hex[$i + 1]));
         }
 
         return $string;
     }
 }
 
-if (!function_exists('str2dec')) {
+if (! function_exists('str2dec')) {
     /**
-     * convert string to decimal    i.e. string = 0x'0101' (=chr(1).chr(1)) => dec = 257
+     * convert string to decimal    i.e. string = 0x'0101' (=chr(1).chr(1)) => dec = 257.
      *
      * Source: https://github.com/micromys/Omnik/blob/master/inverter_class.php
      * @param $string
@@ -46,9 +46,9 @@ if (!function_exists('str2dec')) {
     }
 }
 
-if (!function_exists('getLong')) {
+if (! function_exists('getLong')) {
     /**
-     * Convert 4 bytes to decimal
+     * Convert 4 bytes to decimal.
      *
      * @param string $string
      * @param int $start
@@ -71,9 +71,9 @@ if (!function_exists('getLong')) {
     }
 }
 
-if (!function_exists('getShort')) {
+if (! function_exists('getShort')) {
     /**
-     * Convert to decimal 2 bytes
+     * Convert to decimal 2 bytes.
      *
      * @param string $string
      * @param int $start
@@ -97,7 +97,7 @@ if (!function_exists('getShort')) {
     }
 }
 
-if (!function_exists('getShortIterated')) {
+if (! function_exists('getShortIterated')) {
     /**
      * @param string $string
      * @param int $start

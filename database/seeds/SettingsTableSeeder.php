@@ -13,22 +13,22 @@ class SettingsTableSeeder extends Seeder
     {
         \App\Models\Setting::create([
             'key' => 'inverter_ip',
-            'value' => '127.0.0.1'
+            'value' => '127.0.0.1',
         ]);
 
         \App\Models\Setting::create([
             'key' => 'inverter_port',
-            'value' => '8899'
+            'value' => '8899',
         ]);
 
         \App\Models\Setting::create([
             'key' => 'inverter_serial',
-            'value' => '0000000000'
+            'value' => '0000000000',
         ]);
 
         \App\Models\Setting::create([
             'key' => 'inverter_id',
-            'value' => 'XXXX000000000000'
+            'value' => 'XXXX000000000000',
         ]);
     }
 }
