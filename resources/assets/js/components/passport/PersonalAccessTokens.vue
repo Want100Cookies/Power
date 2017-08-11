@@ -11,18 +11,20 @@
 <template>
     <div>
         <div>
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">
-                        Personal Access Tokens
-                    </h3>
-                    <div class="box-tools pull-right">
-                        <a class="btn btn-primary btn-sm" @click="showCreateTokenForm">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>
+                            Personal Access Tokens
+                        </span>
+
+                        <a class="action-link" @click="showCreateTokenForm">
                             Create New Token
                         </a>
                     </div>
                 </div>
-                <div class="box-body">
+
+                <div class="panel-body">
                     <!-- No Tokens Notice -->
                     <p class="m-b-none" v-if="tokens.length === 0">
                         You have not created any personal access tokens.
@@ -31,26 +33,26 @@
                     <!-- Personal Access Tokens -->
                     <table class="table table-borderless m-b-none" v-if="tokens.length > 0">
                         <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th></th>
-                        </tr>
+                            <tr>
+                                <th>Name</th>
+                                <th></th>
+                            </tr>
                         </thead>
 
                         <tbody>
-                        <tr v-for="token in tokens">
-                            <!-- Client Name -->
-                            <td style="vertical-align: middle;">
-                                {{ token.name }}
-                            </td>
+                            <tr v-for="token in tokens">
+                                <!-- Client Name -->
+                                <td style="vertical-align: middle;">
+                                    {{ token.name }}
+                                </td>
 
-                            <!-- Delete Button -->
-                            <td style="vertical-align: middle;">
-                                <a class="action-link text-danger" @click="revoke(token)">
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
+                                <!-- Delete Button -->
+                                <td style="vertical-align: middle;">
+                                    <a class="action-link text-danger" @click="revoke(token)">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
