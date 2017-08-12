@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\PVTelegram;
-use Illuminate\Http\Request;
 
 class PVController extends Controller
 {
