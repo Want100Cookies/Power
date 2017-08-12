@@ -3,6 +3,10 @@ require('jquery-slimscroll');
 require('admin-lte');
 require('icheck');
 
+import Toastr from 'vue-toastr';
+
+Vue.component('vue-toastr', Toastr);
+
 // https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#advice
 
 Vue.component(
@@ -30,9 +34,6 @@ Vue.component(
     require('./components/configuration/Inverter.vue')
 );
 
-if ($("#configuration").length) {
-    new Vue({
-        el: '#configuration'
-    });
-}
-
+new Vue({
+    el: '.wrapper'
+});

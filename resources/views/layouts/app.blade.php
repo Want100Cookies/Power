@@ -3,6 +3,7 @@
 @section('body')
     <body class="skin-blue sidebar-mini">
     <div class="wrapper">
+        <vue-toastr ref="toastr"></vue-toastr>
         <header class="main-header">
             <a href="#" class="logo">
                 <span class="logo-mini"><b>D</b>/P.</span>

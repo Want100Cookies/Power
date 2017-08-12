@@ -68,7 +68,7 @@ class SettingController extends Controller
         $this->validate($request, [
             'value' => 'required',
         ]);
-abort(404);
+
         $setting->update($request->only(['value']));
 
         return $setting;

@@ -80,9 +80,9 @@
         methods: {
             prepareComponent() {
                 axios.all([
-                    this.getSetting('inverter_ip', ip),
-                    this.getSetting('inverter_port', port),
-                    this.getSetting('inverter_serial', serial),
+                    this.getSetting('inverter_ip', 'ip'),
+                    this.getSetting('inverter_port', 'port'),
+                    this.getSetting('inverter_serial', 'serial'),
                     this.getSetting('inverter_id', 'id'),
                 ]);
             },
@@ -96,52 +96,21 @@
 
             store() {
                 axios.all([
-                    this.storeIP(),
-                    this.storePort(),
-                    this.storeSerial(),
-                    this.storeId(),
-                ]).then(data => {
-                    console.log('success', data);
+                    this.storeSetting('inverter_ip', 'ip'),
+                    this.storeSetting('inverter_port', 'port'),
+                    this.storeSetting('inverter_serial', 'serial'),
+                    this.storeSetting('inverter_id', 'id'),
+                ]).then(() => {
+                    this.$root.$refs.toastr.s("Saved");
+                    console.log('success');
                 });
             },
 
-            // Todo: reduce number of methods (something like setSetting)
-
-            storeIP() {
-                return axios.put('/api/v1/settings/inverter_ip', {
-                    value: this.ip
+            storeSetting(endPoint, localKey) {
+                return axios.put('/api/v1/settings/' + endPoint, {
+                    value: this[localKey]
                 }).then(response => {
-                    this.ip = response.data.value;
-                }).catch(error => {
-                    console.error('error', error);
-                });
-            },
-
-            storePort() {
-                return axios.put('/api/v1/settings/inverter_port', {
-                    value: this.port
-                }).then(response => {
-                    this.port = response.data.value;
-                }).catch(error => {
-                    console.error('error', error);
-                });
-            },
-
-            storeSerial() {
-                return axios.put('/api/v1/settings/inverter_serial', {
-                    value: this.serial
-                }).then(response => {
-                    this.serial = response.data.value;
-                }).catch(error => {
-                    console.error('error', error);
-                });
-            },
-
-            storeId() {
-                return axios.put('/api/v1/settings/inverter_id', {
-                    value: this.id
-                }).then(response => {
-                    this.id = response.data.value;
+                    this[localKey] = response.data.value;
                 }).catch(error => {
                     console.error('error', error);
                 });
