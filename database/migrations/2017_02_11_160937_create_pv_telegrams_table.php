@@ -17,36 +17,36 @@ class CreatePvTelegramsTable extends Migration
             $table->increments('id');
 
             $table->string('inverter_id');
-            $table->decimal('temperature', 3, 1);
+            $table->decimal('temperature', 7, 2);
 
-            $table->decimal('vpv1', 4, 2);
-            $table->decimal('vpv2', 4, 2);
-            $table->decimal('vpv3', 4, 2);
+            $table->decimal('vpv1', 7, 2);
+            $table->decimal('vpv2', 7, 2);
+            $table->decimal('vpv3', 7, 2);
 
-            $table->decimal('ipv1', 4, 2);
-            $table->decimal('ipv2', 4, 2);
-            $table->decimal('ipv3', 4, 2);
+            $table->decimal('ipv1', 7, 2);
+            $table->decimal('ipv2', 7, 2);
+            $table->decimal('ipv3', 7, 2);
 
-            $table->decimal('iac1', 4, 2);
-            $table->decimal('iac2', 4, 2);
-            $table->decimal('iac3', 4, 2);
+            $table->decimal('iac1', 7, 2);
+            $table->decimal('iac2', 7, 2);
+            $table->decimal('iac3', 7, 2);
 
-            $table->decimal('vac1', 4, 2);
-            $table->decimal('vac2', 4, 2);
-            $table->decimal('vac3', 4, 2);
+            $table->decimal('vac1', 7, 2);
+            $table->decimal('vac2', 7, 2);
+            $table->decimal('vac3', 7, 2);
 
-            $table->decimal('fac1', 4, 2);
-            $table->decimal('fac2', 4, 2);
-            $table->decimal('fac3', 4, 2);
+            $table->decimal('fac1', 7, 2);
+            $table->decimal('fac2', 7, 2);
+            $table->decimal('fac3', 7, 2);
 
-            $table->decimal('pac1', 4, 2);
-            $table->decimal('pac2', 4, 2);
-            $table->decimal('pac3', 4, 2);
+            $table->decimal('pac1', 7, 2);
+            $table->decimal('pac2', 7, 2);
+            $table->decimal('pac3', 7, 2);
 
-            $table->decimal('total_day', 4, 2);
+            $table->decimal('total_day', 9, 2);
             $table->decimal('total', 65, 1);
 
-            $table->decimal('hours_since_reset', 4, 1);
+            $table->decimal('hours_since_reset', 9, 1);
 
             $table->timestamps();
         });
