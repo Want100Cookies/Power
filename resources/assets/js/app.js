@@ -34,6 +34,11 @@ Vue.component(
     require('./components/configuration/Inverter.vue')
 );
 
+Vue.component(
+    'pv-current',
+    require('./components/dashboard/PVCurrent.vue')
+);
+
 new Vue({
     el: '.wrapper'
 });

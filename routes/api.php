@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('dsmr/raw', 'ApiController@DsmrTelegramRaw');
+
+    Route::get('pv/current', 'PVController@current');
 
     Route::get('cost-price', 'CostPriceController@index');
     Route::get('cost-price/last/{type}', 'CostPriceController@last');
